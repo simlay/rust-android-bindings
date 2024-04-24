@@ -1,0 +1,19 @@
+[package]
+name = "android-bindings"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate_type = ["cdylib"]
+
+[build-dependencies]
+jaffi = { version = "0.2.0", path = "../jaffi/" }
+
+[dependencies]
+jaffi_support = { version = "0.2.0", path = "../jaffi/jaffi_support" }
+
+[dev-dependencies]
+jni = "0.21.1"
+ndk-context = "0.1.1"

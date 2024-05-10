@@ -3,13 +3,15 @@ use jaffi_support::{
     Error,
 };
 
-use crate::bindings::{
-    AndroidContentContext,
+pub use crate::bindings::{
+    AndroidAnimationStateListAnimator,
+    //AndroidWidgetEditText,
+    //AndroidContentContext,
     //AndroidViewView,
     *
 };
 
-pub mod bindings {
+mod bindings {
     #![allow(
         dead_code,
         clippy::unused_unit,
@@ -19,10 +21,4 @@ pub mod bindings {
     )]
 
     include!(concat!(env!("OUT_DIR"), "/generated_jaffi.rs"));
-}
-
-#[test]
-fn simple() {
-    let ctx = ndk_context::android_context();
-    let vm = unsafe { jni::JavaVM::from_raw(ctx.vm().cast()) }.expect("Failed to get javavm");
 }

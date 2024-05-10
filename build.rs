@@ -24,9 +24,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     ];
     let classes_to_wrap = vec![
         //Cow::from("android.annotation.AttrRes"),
-        Cow::from("android.widget.EditText"),
-        Cow::from("android.widget.TextView"),
-        //Cow::from("android.view.View"),
+        //Cow::from("android.widget.EditText"),
+        //Cow::from("android.widget.TextView"),
+        Cow::from("android.view.View"),
+        //Cow::from("android.app.Activity"),
     ];
     let output_dir = PathBuf::from(std::env::var("OUT_DIR").expect("OUT_DIR not set"));
     let output_file = Cow::from(Path::new("generated_jaffi.rs"));

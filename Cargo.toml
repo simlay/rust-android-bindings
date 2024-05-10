@@ -4,9 +4,12 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[example]]
+name = "simple"
+crate-type = ["cdylib"]
 
-[lib]
-crate_type = ["cdylib"]
+#[lib]
+#crate_type = ["cdylib"]
 
 [build-dependencies]
 jaffi = { version = "0.2.0", path = "../jaffi/" }
@@ -15,5 +18,14 @@ jaffi = { version = "0.2.0", path = "../jaffi/" }
 jaffi_support = { version = "0.2.0", path = "../jaffi/jaffi_support" }
 
 [dev-dependencies]
-jni = "0.21.1"
+jni = "0.20"
+log = "0.4.14"
+ndk = { version = "0.8", features = ["api-level-31"] }
 ndk-context = "0.1.1"
+android_logger = "0.13.3"
+android-activity = { version = "0.5.2", features = ["native-activity"] }
+libc = "0.2"
+
+[package.metadata.android.sdk]
+min_sdk_version = 21
+target_sdk_version = 33

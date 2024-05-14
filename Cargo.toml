@@ -12,15 +12,15 @@ crate-type = ["cdylib"]
 #crate_type = ["cdylib"]
 
 [build-dependencies]
-jaffi = { version = "0.2.0", path = "../jaffi/" }
+jaffi = { version = "0.2.0" }
 
 [dependencies]
-jaffi_support = { version = "0.2.0", path = "../jaffi/jaffi_support" }
+jaffi_support = { version = "0.2.0" }
 
 [dev-dependencies]
 jni = "0.20"
 log = "0.4.14"
-ndk = { version = "0.8", features = ["api-level-31"] }
+ndk = { version = "0.9", features = ["api-level-31"] }
 ndk-context = "0.1.1"
 android_logger = "0.13.3"
 android-activity = { version = "0.5.2", features = ["native-activity"] }
@@ -29,3 +29,8 @@ libc = "0.2"
 [package.metadata.android.sdk]
 min_sdk_version = 21
 target_sdk_version = 33
+
+[patch.crates-io]
+jaffi = { path = "../jaffi/" }
+jaffi_support = { path = "../jaffi/jaffi_support/" }
+cafebabe = { path = "../cafebabe/" }

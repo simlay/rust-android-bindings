@@ -24,10 +24,17 @@ fn main() -> Result<(), Box<dyn Error>> {
     ];
     let classes_to_wrap = vec![
         //Cow::from("android.annotation.AttrRes"),
-        //Cow::from("android.widget.EditText"),
-        //Cow::from("android.widget.TextView"),
+        // Does not work
+        Cow::from("android.app.Activity"),
+        Cow::from("android.util.AndroidException"),
+        Cow::from("android.content.IntentSender"),
+        Cow::from("android.view.ContextThemeWrapper"),
+        // Works
+        Cow::from("android.view.KeyEvent"),
         Cow::from("android.view.View"),
-        //Cow::from("android.app.Activity"),
+        Cow::from("android.graphics.drawable.Drawable"),
+        Cow::from("android.widget.EditText"),
+        Cow::from("android.widget.TextView"),
     ];
     let output_dir = PathBuf::from(std::env::var("OUT_DIR").expect("OUT_DIR not set"));
     let output_file = Cow::from(Path::new("generated_jaffi.rs"));

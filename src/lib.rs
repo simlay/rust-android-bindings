@@ -4,7 +4,9 @@ use jaffi_support::{
 };
 
 pub use crate::bindings::{
-    AndroidAnimationStateListAnimator,
+    //AndroidGraphicsRenderEffectClass
+    //AndroidViewKeyEvent,
+    //AndroidAnimationStateListAnimator,
     //AndroidWidgetEditText,
     //AndroidContentContext,
     //AndroidViewView,
@@ -22,3 +24,4 @@ mod bindings {
 
     include!(concat!(env!("OUT_DIR"), "/generated_jaffi.rs"));
 }
+//mod generated_jaffi;

@@ -25,9 +25,9 @@ dependencies = [
  "jni-sys",
  "libc",
  "log",
- "ndk",
+ "ndk 0.8.0",
  "ndk-context",
- "ndk-sys",
+ "ndk-sys 0.5.0+25.2.9519653",
  "num_enum",
  "thiserror",
 ]
@@ -43,7 +43,7 @@ dependencies = [
  "jni 0.20.0",
  "libc",
  "log",
- "ndk",
+ "ndk 0.9.0",
  "ndk-context",
 ]
 
@@ -92,8 +92,6 @@ checksum = "514de17de45fdb8dc022b1a7975556c53c86f9f0aa5f534b98977b171857c2c9"
 [[package]]
 name = "cafebabe"
 version = "0.6.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3cb5eea41dce128eb8257a90648a2392b0ec58a4bc9fcfa5d97e3e79abc7c020"
 dependencies = [
  "bitflags 1.3.2",
  "cesu8",
@@ -275,7 +273,21 @@ dependencies = [
  "bitflags 2.5.0",
  "jni-sys",
  "log",
- "ndk-sys",
+ "ndk-sys 0.5.0+25.2.9519653",
+ "num_enum",
+ "thiserror",
+]
+
+[[package]]
+name = "ndk"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c3f42e7bbe13d351b6bead8286a43aac9534b82bd3cc43e47037f012ebfd62d4"
+dependencies = [
+ "bitflags 2.5.0",
+ "jni-sys",
+ "log",
+ "ndk-sys 0.6.0+11769913",
  "num_enum",
  "raw-window-handle",
  "thiserror",
@@ -292,6 +304,15 @@ name = "ndk-sys"
 version = "0.5.0+25.2.9519653"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8c196769dd60fd4f363e11d948139556a344e79d451aeb2fa2fd040738ef7691"
+dependencies = [
+ "jni-sys",
+]
+
+[[package]]
+name = "ndk-sys"
+version = "0.6.0+11769913"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ee6cda3051665f1fb8d9e08fc35c96d5a244fb1be711a03b71118828afc9a873"
 dependencies = [
  "jni-sys",
 ]

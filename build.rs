@@ -7,16 +7,65 @@ use std::{
 };
 
 use jaffi::Jaffi;
+use std::fs;
+use std::io;
+
+fn extract_jar(file: PathBuf) {
+    let file = fs::File::open(file).unwrap();
+    let mut archive = zip::ZipArchive::new(file).unwrap();
+    //let output_dir = PathBuf::from(std::env::var("CARGO_TARGET_DIR").unwrap()).join("android-src");
+    let output_dir = PathBuf::from("./target").join("android-src");
+
+    for i in 0..archive.len() {
+        let mut file = archive.by_index(i).unwrap();
+        let outpath = match file.enclosed_name() {
+            Some(path) => output_dir.join(path),
+            None => continue,
+        };
+
+        {
+            let comment = file.comment();
+            if !comment.is_empty() {
+                println!("File {i} comment: {comment}");
+            }
+        }
+
+        if file.is_dir() {
+            println!("File {} extracted to \"{}\"", i, outpath.display());
+            fs::create_dir_all(&outpath).unwrap();
+        } else {
+            println!(
+                "File {} extracted to \"{}\" ({} bytes)",
+                i,
+                outpath.display(),
+                file.size()
+            );
+            if let Some(p) = outpath.parent() {
+                if !p.exists() {
+                    fs::create_dir_all(p).unwrap();
+                }
+            }
+            let mut outfile = fs::File::create(&outpath).unwrap();
+            io::copy(&mut file, &mut outfile).unwrap();
+        }
+    }
+}
 
 fn class_path() -> PathBuf {
-    // TODO: Look in the android.jar
-    //PathBuf::from(std::env::var("OUT_DIR").expect("OUT_DIR not set")).join("java/classes")
-    PathBuf::from("android-src/")
+    let android_jar = if let Ok(android_jar) = std::env::var("ANDROID_JAR") {
+        PathBuf::from(android_jar)
+    } else {
+        let android_home = PathBuf::from(std::env::var("ANDROID_HOME").expect("ANDROID_HOME not set"));
+        android_home.join("platforms/android-34/")
+    };
+    if !std::path::Path::new("./target/android-src/").exists() {
+        extract_jar(android_jar);
+    }
+    PathBuf::from("target/android-src/")
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
     // only need this if you need to compile the java, this is needed for the integration tests...
-    //compile_java();
 
     let class_path = class_path();
     let classes = vec![

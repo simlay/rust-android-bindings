@@ -1,8 +1,3 @@
-use jaffi_support::{
-    jni::{objects::JObject, JNIEnv},
-    Error,
-};
-
 pub use crate::bindings::{
     //AndroidGraphicsRenderEffectClass
     //AndroidViewKeyEvent,

@@ -29,6 +29,8 @@ jobs:
       - run: cargo doc --target aarch64-linux-android
       - name: Commit docs to gh-pages
         run: |
+          git config --global user.email "sebastian.imlay@gmail.com"
+          git config --global user.name "Sebastian Imlay"
           git checkout --orphan gh-pages
           echo '<meta http-equiv="refresh" content="0; url=target/aarch64-linux-android/doc/android_bindings/index.html"><a href="target/aarch64-linux-android/doc/android_bindings/index.html">Redirect</a>' > index.html
           git add index.html

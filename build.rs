@@ -55,8 +55,9 @@ fn class_path() -> PathBuf {
     let android_jar = if let Ok(android_jar) = std::env::var("ANDROID_JAR") {
         PathBuf::from(android_jar)
     } else {
-        let android_home = PathBuf::from(std::env::var("ANDROID_HOME").expect("ANDROID_HOME not set"));
-        android_home.join("platforms/android-34/")
+        let android_home =
+            PathBuf::from(std::env::var("ANDROID_HOME").expect("ANDROID_HOME not set"));
+        android_home.join("platforms/android-34/android.jar")
     };
     if !std::path::Path::new("./target/android-src/").exists() {
         extract_jar(android_jar);

@@ -1,13 +1,7 @@
 use android_activity::AndroidApp;
+use android_bindings::{AndroidContentContext, AndroidWidgetEditText, AndroidWidgetTextView};
 use jni::objects::{JObject, JValue};
 use log::info;
-use android_bindings::{
-    AndroidWidgetEditText,
-    AndroidContentContext,
-    AndroidWidgetTextView,
-
-};
-
 
 /// A minimal example of how to use `ndk_context` to get a `JavaVM` + `Context and make a JNI call
 fn ndk_context_jni_test() -> Result<(), Box<dyn std::error::Error>> {
@@ -18,11 +12,10 @@ fn ndk_context_jni_test() -> Result<(), Box<dyn std::error::Error>> {
     let env = vm.attach_current_thread()?;
     let context = AndroidContentContext::from(context);
 
-    let text_editor = AndroidWidgetEditText::new_1android_widget_edit_text_landroid_content_context_2(
-        *env,
-        context,
-    );
-
+    let text_editor =
+        AndroidWidgetEditText::new_1android_widget_edit_text_landroid_content_context_2(
+            *env, context,
+        );
 
     // Since we aren't making JNI calls within the implementation of a native call from the JavaVM
     // we wrap the reference in an `AutoLocal` to make sure it will be deleted.
@@ -38,7 +31,9 @@ fn ndk_context_jni_test() -> Result<(), Box<dyn std::error::Error>> {
 fn android_main(app: AndroidApp) {
     let winow = app.native_window();
 
-    android_logger::init_once(android_logger::Config::default().with_max_level(log::LevelFilter::Info));
+    android_logger::init_once(
+        android_logger::Config::default().with_max_level(log::LevelFilter::Info),
+    );
     info!("before hello world");
     println!("before hello world");
 

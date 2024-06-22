@@ -32,6 +32,5 @@ min_sdk_version = 21
 target_sdk_version = 33
 
 [patch.crates-io]
-jaffi = { path = "../jaffi/" }
-jaffi_support = { path = "../jaffi/jaffi_support/" }
-cafebabe = { path = "../cafebabe/" }
+jaffi = { git = "https://github.com/simlay/jaffi.git", branch = "android-bindings" }
+jaffi_support = { git = "https://github.com/simlay/jaffi.git", branch = "android-bindings" }

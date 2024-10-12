@@ -133,7 +133,7 @@ fn android_main(app: AndroidApp) {
                         }
 
                         info!("Render...");
-                        dummy_render(native_window);
+                        ndk_context_jni_test(native_window);
                     }
                 }
             },
@@ -143,6 +143,7 @@ fn android_main(app: AndroidApp) {
     info!("after hello world");
     println!("after hello world");
 }
+/*
 fn dummy_render(native_window: &ndk::native_window::NativeWindow) {
     unsafe {
         let mut buf: ndk_sys::ANativeWindow_Buffer = std::mem::zeroed();
@@ -157,9 +158,10 @@ fn dummy_render(native_window: &ndk::native_window::NativeWindow) {
         ndk_sys::ANativeWindow_unlockAndPost(native_window.ptr().as_ptr() as _);
     }
 }
+*/
 
 /// A minimal example of how to use `ndk_context` to get a `JavaVM` + `Context and make a JNI call
-fn ndk_context_jni_test() -> Result<(), Box<dyn std::error::Error>> {
+fn ndk_context_jni_test(native_window: &ndk::native_window::NativeWindow) -> Result<(), Box<dyn std::error::Error>> {
     // Get a VM for executing JNI calls
     let ctx = ndk_context::android_context();
     let vm = unsafe { JavaVM::from_raw(ctx.vm().cast()) }?;
